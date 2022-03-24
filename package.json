@@ -1,0 +1,24 @@
+{
+  "name": "design-system-core",
+  "version": "1.0.0",
+  "description": "Core components for design system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siulAvila/design-system-core.git"
+  },
+  "keywords": [
+    "design-sytem",
+    "web-components",
+    "lit"
+  ],
+  "author": "Luis Fernando",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/siulAvila/design-system-core/issues"
+  },
+  "homepage": "https://github.com/siulAvila/design-system-core#readme"
+}
