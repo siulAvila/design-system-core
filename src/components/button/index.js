@@ -1,4 +1,7 @@
 import { html, LitElement, unsafeCSS } from "lit";
+import { classMap } from "lit/directives/class-map.js";
+import { ifDefined } from "lit/directives/if-defined.js";
+
 import style from "./style.scss";
 
 export class DscButton extends LitElement {
@@ -6,12 +9,41 @@ export class DscButton extends LitElement {
     return unsafeCSS(style);
   }
 
+  static get properties() {
+    return {
+      disabled: { type: Boolean },
+      loading: { type: Boolean },
+    };
+  }
+
   constructor() {
     super();
+    this.disabled = false;
+    this.loading = false;
+  }
+
+  _handleClick() {
+    this.dispatchEvent(
+      new CustomEvent("dscClick", {
+        bubbles: true,
+        composed: true,
+      })
+    );
   }
 
   render() {
-    return html` <button><slot></slot></button>`;
+    return html` <button
+      class=${classMap({
+        [`button`]: true,
+        [`button-loading`]: this.loading,
+      })}
+      aria-disabled="${this.disabled}"
+      aria-label="${ifDefined(this.loading ? "Loading" : undefined)}"
+      ?disabled="${this.disabled}"
+      @click="${this._handleClick}"
+    >
+      <slot></slot>
+    </button>`;
   }
 }
 customElements.define("dsc-button", DscButton);
